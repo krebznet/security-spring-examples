@@ -1,0 +1,138 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 .SFNS-Bold;\f1\fnil\fcharset0 .SFNS-Regular;\f2\froman\fcharset0 TimesNewRomanPSMT;
+}
+{\colortbl;\red255\green255\blue255;\red14\green14\blue14;}
+{\*\expandedcolortbl;;\cssrgb\c6700\c6700\c6700;}
+\margl1440\margr1440\vieww17340\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f0\b\fs44 \cf2 Challenges at Hand
+\f1\b0\fs42 \
+\
+This application originated over 15 years ago, with contributions from many different developers over the years and minimal documentation to accompany it. The build process remains manual, with dependency libraries embedded directly into the source repository, making straightforward replacements of old libraries with updated security libraries unfeasible.\
+\
+To address these challenges, a thorough manual dependency analysis is required, involving the inspection of JAR files to locate Maven POM files and determine the correct combination of libraries needed for the EMOST libraries. However, even after identifying and implementing the necessary libraries, many services and integrations break due to the complex interdependencies within the system. This adds a significant layer of complexity, necessitating careful refactoring and rethinking of how to re-establish connections with broken endpoints. This work is ongoing and is essential to achieving a stable, secure, and compliant system.\
+\
+\
+
+\f0\b\fs44 End Goal
+\f1\b0\fs42 \
+\
+The end goal is straightforward: remove the legacy security libraries and related code, replacing them with the current EMOST releases. However, the process to reach this point involves multiple complex steps. Below is an outline of the necessary steps required to achieve successful completion:\
+\
+\pard\tqr\tx260\tx420\li420\fi-420\sl324\slmult1\sb240\partightenfactor0
+
+\f2\fs28 \cf2 	1.	
+\f0\b\fs42 Identify and Remove Legacy Libraries
+\f1\b0 : Isolate and remove outdated security libraries embedded within the source repository.\
+
+\f2\fs28 	2.	
+\f0\b\fs42 Integrate Current EMOST Libraries
+\f1\b0 : Replace legacy libraries with the updated EMOST versions, ensuring compatibility with the existing codebase.\
+
+\f2\fs28 	3.	
+\f0\b\fs42 Refactor Dependent Code
+\f1\b0 : Update or rewrite code that relies on deprecated libraries, ensuring that all dependencies align with the new security standards.\
+
+\f2\fs28 	4.	
+\f0\b\fs42 Resolve Broken Integrations
+\f1\b0 : Address broken services and integrations by rethinking the architecture and re-establishing connections where needed.\
+
+\f2\fs28 	5.	
+\f0\b\fs42 Testing and Validation
+\f1\b0 : Perform comprehensive testing to confirm that the new libraries function correctly, maintain security compliance, and do not introduce new issues.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f0\b\fs44 \cf2 Current Security Libraries
+\f1\b0\fs42 \
+\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	
+\f0\b Generic OAuth Client
+\f1\b0 : version 2.1.4\
+	\'95	
+\f0\b Generic Security Endpoint
+\f1\b0 : version 2.1.4\
+	\'95	
+\f0\b Generic Service Discovery
+\f1\b0 : version 2.1.4\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+\cf2 \
+
+\f0\b\fs44 Previous Versions (Updated Libraries)
+\f1\b0\fs42 \
+\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	
+\f0\b Generic OAuth Client
+\f1\b0 : version 1.4\
+	\'95	
+\f0\b Generic Service Discovery
+\f1\b0 : version 1.4\
+	\'95	
+\f0\b Generic Endpoint Discovery
+\f1\b0 : version 1.4\
+	\'95	
+\f0\b RRBus Provider Service
+\f1\b0 : Legacy version\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+\cf2 \
+
+\f0\b\fs44 Removed Libraries
+\f1\b0\fs42 \
+\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	
+\f0\b CAM Authentication Libraries
+\f1\b0 \
+	\'95	
+\f0\b RRBus Libraries
+\f1\b0 \
+\pard\tqr\tx260\tx420\li420\fi-420\sl324\slmult1\sb240\partightenfactor0
+\cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f0\b\fs44 \cf2 Compile-Time Issues
+\f1\b0\fs42 \
+\
+After updating to the current standard versions of the security libraries and removing specific legacy components, we encountered 
+\f0\b \cf2 82 compile-time issues
+\f1\b0 \cf2 . These errors highlight the complexity and scope of the migration, as many critical components are now non-functional.\
+\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	
+\f0\b Broken SOAP Services
+\f1\b0 : Numerous SOAP-based services fail to compile due to deprecated dependencies and incompatible library updates. These failures require significant code analysis and restructuring to align with the updated libraries.\
+	\'95	
+\f0\b CAM Authentication and Access Token Manager
+\f1\b0 : Key components, including the 
+\f0\b CAM Authentication Service
+\f1\b0  and 
+\f0\b Access Token Manager
+\f1\b0 , are now broken. Addressing these issues is particularly challenging, as it involves an in-depth understanding of the new client libraries, requiring careful analysis and potentially substantial code refactoring.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+\cf2 \
+The most difficult part of this process involves analyzing the existing code, comprehending the capabilities and limitations of the new libraries, and progressing without a clear migration path. This phase demands a strategic approach, thorough research, and potentially innovative solutions to restore system functionality and ensure compliance with the new security framework.\
+\
+
+\f0\b\fs44 EMOST Resources and Office Hours
+\f1\b0\fs42 \
+\
+With limited team knowledge available, these resources have been essential in providing a roadmap and guiding the migration process. These links serve as references to help navigate the complexities of the EMOST libraries and understand their usage within the application. Additionally, 
+\f0\b \cf2 daily office hours
+\f1\b0 \cf2  are attended to discuss ongoing blockers and gain further insights from available expertise.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 Useful Resources
+\f1\b0 \cf2 :\
+\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	[Paste links here]\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+\cf2 \
+These resources and collaborative sessions are critical to overcoming obstacles and ensuring that the migration aligns with Schwab\'92s security and compliance standards.\
+\
+This section emphasizes the importance of external resources and collaboration in guiding the migration. You can insert the links once you have them, and it will serve as a helpful reference point for anyone reviewing the document. Let me know if you\'92d like any adjustments!\
+}
