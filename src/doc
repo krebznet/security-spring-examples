@@ -1,0 +1,3 @@
+Extensive analysis of deprecated CAM and RRBUS dependencies has been conducted to establish a migration path for continued consumption of legacy RRBUS services through an alternative approach. Collaboration with the Schwab engineering team has been instrumental in identifying that the current Schwab service registry provides identical services, effectively wrapping RRBUS functionality.
+
+Currently, work is focused on finalizing OAuth token generation and refining the code to replace direct RRBUS calls. Ravi and I are actively working to determine the best method for invoking SOAP calls to the service registry. We’ve committed to delivering a completed demo or screen share by the end of the sprint. At this stage, there are no significant risks to the migration.
