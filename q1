@@ -1,0 +1,5 @@
+We’re currently working to retrieve a SecurityToken from an OAuthClient using a request and response process. From the response, we get a token string, which needs to be passed into a SecurityToken object. In the latest Java client libraries, version 2.1.4, we’ve encountered SelfContainedAccessToken within the security-endpoint-lib and SelfContainedAccessTokenWrapper in the oauth-client-generic-lib. In our existing legacy code, we return an older version of the SecurityToken interface, and we’re unsure which implementation is best suited for this updated approach.
+
+Additionally, we’ve transitioned from a JKS certificate to a PKCS12 certificate. We noticed that none of the current SecurityToken implementations provide a public validate method, although there is a protected validate method in SelfContainedAccessToken.
+
+This is a detailed scenario, but we would greatly appreciate any guidance or feedback on how best to proceed, particularly with respect to which SecurityToken implementation would align with the legacy logic, given our switch to PKCS12 and our need for token validation. Any insights or leads would be immensely helpful!
