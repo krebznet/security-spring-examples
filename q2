@@ -1,0 +1,9 @@
+We’re working on a couple of challenging updates related to our security and session handling in Java, and we’re hoping for some insights:
+
+	1.	Legacy SessionContext Migration:
+We have a need for a migration path from the legacy SessionContext in generic-context library version 1.1.6. The current setup relies on a static set method that accepts another SessionContext instance, but we haven’t found a clear way to instantiate a new SessionContext. We’d appreciate any code samples, links, tips, or guidance on this, especially if you’ve encountered a similar migration challenge.
+	2.	SecurityToken and Token Validation:
+In a parallel task, we’re trying to retrieve a SecurityToken from an OAuthClient using a request-response process. After receiving a token string in the response, we need to create a SecurityToken object. In the new Java client libraries (version 2.1.4), we see both SelfContainedAccessToken in security-endpoint-lib and SelfContainedAccessTokenWrapper in oauth-client-generic-lib. Our legacy code previously returned an older implementation of the SecurityToken interface, and we’re not sure which current implementation aligns best for this use case. Furthermore, we’ve switched from a JKS certificate to a PKCS12 certificate. It’s also worth noting that neither of the SecurityToken implementations have a public validate method, though SelfContainedAccessToken has a protected validate method.
+
+Any leads, feedback on the logic, or pointers (e.g., documentation links, sample code, or migration tips) for the SessionContext instantiation or the token validation approach would be immensely appreciated!
+
