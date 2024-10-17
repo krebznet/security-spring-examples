@@ -1,0 +1,47 @@
+<project name="YourProject" default="test" basedir=".">
+    <!-- Define Directories -->
+    <property name="src.dir" location="src/main/java"/>
+    <property name="test.dir" location="src/main/test"/>
+    <property name="build.dir" location="build"/>
+    <property name="classes.dir" location="${build.dir}/classes"/>
+    <property name="test.classes.dir" location="${build.dir}/test-classes"/>
+    <property name="lib.dir" location="lib"/>
+    <property name="junit.report.dir" location="${build.dir}/test-reports"/>
+
+    <!-- Classpath definition -->
+    <path id="classpath">
+        <pathelement location="${classes.dir}"/>
+        <pathelement location="${test.classes.dir}"/>
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    <!-- Compile Main Classes -->
+    <target name="compile">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"/>
+    </target>
+
+    <!-- Compile Test Classes -->
+    <target name="compile-test" depends="compile">
+        <mkdir dir="${test.classes.dir}"/>
+        <javac srcdir="${test.dir}" destdir="${test.classes.dir}" classpathref="classpath"/>
+    </target>
+
+    <!-- Run JUnit Tests -->
+    <target name="test" depends="compile-test">
+        <mkdir dir="${junit.report.dir}"/>
+        <junit printsummary="yes" haltonfailure="yes" fork="yes">
+            <classpath refid="classpath"/>
+            <batchtest fork="yes" todir="${junit.report.dir}">
+                <fileset dir="${test.dir}">
+                    <include name="**/*Test.java"/>
+                </fileset>
+            </batchtest>
+            <formatter type="xml"/>
+            <formatter type="plain"/>
+        </junit>
+    </target>
+
+</project>
